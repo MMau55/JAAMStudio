@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerMov : MonoBehaviour
 {
+
+    public float SpawnMinZ;
+    public float SpawnMaxZ;
+    public float SpawnX;
+    
     // Start is called before the first frame update
     void Start()
     {
