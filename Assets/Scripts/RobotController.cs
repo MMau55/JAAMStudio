@@ -6,7 +6,7 @@ public class RobotController : MonoBehaviour
 {
     // Private variable
     private float speed = 7.0f;
-    private float turnSpeed = 7.0f;
+    private float turnSpeed = 50.0f;
     private float horizontalInput;
     private float forwardInput;
 
@@ -20,8 +20,8 @@ public class RobotController : MonoBehaviour
     void Update()
     {
         // This is where we get player input
-        horizontalInput = Input.GetAxis("Horizontal");
-        forwardInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal1");
+        forwardInput = Input.GetAxis("Vertical1");
 
         //Move the Robot forward
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
