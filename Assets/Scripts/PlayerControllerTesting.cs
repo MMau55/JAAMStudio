@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerTesting : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
     public float mouseSensitivity = 100f;
