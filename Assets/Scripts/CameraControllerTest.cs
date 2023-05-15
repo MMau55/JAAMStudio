@@ -31,7 +31,8 @@ public class CameraControllerTest : MonoBehaviour
 
         // Ajusta la posición y rotación de la cámara
         transform.position = player.transform.position + rotation * offset;
-        transform.LookAt(player.transform.position);
+        //transform.LookAt(player.transform.position);
+        transform.LookAt(player.transform.position + new Vector3(0,1,0));
 
         // Gira la cámara con el mouse
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
