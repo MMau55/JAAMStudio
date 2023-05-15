@@ -109,11 +109,11 @@ public class Enemy : MonoBehaviour
     public bool alerta;
     public bool enMovimiento;
 
-    public GameObject projectilePrefab;
+    /*public GameObject projectilePrefab;
     public float distanciaDisparo = 5f;
     public float velocidadDisparo = 50f;
     private float tiempoUltimoDisparo;
-    private Transform puntoDisparo;
+    private Transform puntoDisparo;*/
 
     private bool hayObstaculo;
     private bool seguirJugador;
@@ -133,11 +133,11 @@ public class Enemy : MonoBehaviour
         seguirJugador = false;
 
         // Busca el punto de disparo en la jerarquía de objetos del enemigo
-        puntoDisparo = transform.Find("PuntoDisparo");
+        /*puntoDisparo = transform.Find("PuntoDisparo");
         if (puntoDisparo == null)
         {
             Debug.LogError("No se encontró el objeto 'PuntoDisparo'");
-        }
+        }*/
     }
 
     private void OnDrawGizmosSelected()
@@ -194,8 +194,8 @@ public class Enemy : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, jugador.position, velocidadM * Time.deltaTime);
             float distancia = Vector3.Distance(transform.position, jugador.position);
-
-            if (distancia <= distanciaDisparo && Time.time - tiempoUltimoDisparo > 1 / velocidadDisparo)
+            transform.LookAt(jugador);
+            /*if (distancia <= distanciaDisparo && Time.time - tiempoUltimoDisparo > 1 / velocidadDisparo)
             {
                 tiempoUltimoDisparo = Time.time;
                 Disparar();
@@ -209,7 +209,7 @@ public class Enemy : MonoBehaviour
                 proyectil.AddForce(rotacionDisparo * Vector3.forward * velocidadDisparo, ForceMode.Impulse);
                 tiempoUltimoDisparo = Time.time;
                 transform.LookAt(jugador);
-            }
+            }*/
 
         }
 
@@ -225,7 +225,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Disparar()
+    /*void Disparar()
     {
         // Crea un nuevo objeto de laser desde el prefab
         GameObject bullet = Instantiate(projectilePrefab, puntoDisparo.position, puntoDisparo.rotation);
@@ -239,5 +239,5 @@ public class Enemy : MonoBehaviour
         proyectil.AddForce(direccionLaser * velocidadDisparo, ForceMode.VelocityChange);
 
         Destroy(bullet, 5f);
-    }
+    }*/
 }

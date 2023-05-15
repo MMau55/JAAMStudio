@@ -19,14 +19,32 @@ public class PlayerController : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    // Update is called once per frame
+    void FixedUpdate()
     {
 
         /*float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+
+            transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+
+            transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+        }
 
         transform.Rotate(Vector3.up * mouseX);
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);*/
@@ -43,7 +61,4 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
 }
-
-

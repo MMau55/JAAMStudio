@@ -1622,7 +1622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc8286896da8ea4e83b588c9755e487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  siguienteWaypoint: {fileID: 706424784}
 --- !u!4 &525692013
 Transform:
   m_ObjectHideFlags: 0
@@ -2318,7 +2317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc8286896da8ea4e83b588c9755e487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  siguienteWaypoint: {fileID: 1787479454}
 --- !u!23 &755908323
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3789,8 +3787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e62a3441bf7dee4cabe6df3746dff85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  isControlled: 0
 --- !u!136 &1196994608
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3917,8 +3913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41640304fb6dc747aad274ec5daebad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  isControlled: 0
 --- !u!65 &1201285738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4346,11 +4340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172a00dc3c060714dad0f14297536f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7887587905974172099}
-  player2: {fileID: 1196994606}
-  offset: {x: -50, y: 10, z: -40}
-  sensitivity: 100
-  isFollowingPlayer1: 1
 --- !u!1 &1333777570
 GameObject:
   m_ObjectHideFlags: 0
@@ -5562,7 +5551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc8286896da8ea4e83b588c9755e487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  siguienteWaypoint: {fileID: 525692013}
 --- !u!1001 &1840274980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5852,7 +5840,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc8286896da8ea4e83b588c9755e487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  siguienteWaypoint: {fileID: 706424784}
 --- !u!1001 &1880724183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6099,8 +6086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca198997297c214fa4f32a7ba42e18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanciaMaxima: 10
-  velocidadProyectil: 10
 --- !u!4 &1959829245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010507042020, guid: 39485138b2c1f4d41bdd3846e259ffea, type: 3}
@@ -7053,8 +7038,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e62a3441bf7dee4cabe6df3746dff85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  isControlled: 0
 --- !u!143 &8105973905252116911
 CharacterController:
   m_ObjectHideFlags: 0
@@ -7107,17 +7090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bafe89fffdb21e448be77cca90de299b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rango: 30
-  layerjugador:
-    serializedVersion: 2
-    m_Bits: 64
-  jugador: {fileID: 8105973905252116907}
-  velocidadM: 8
-  alerta: 0
-  enMovimiento: 0
-  projectilePrefab: {fileID: 1934088803}
-  distanciaDisparo: 20
-  velocidadDisparo: 0.2
 --- !u!54 &9192759795090631759
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7160,11 +7132,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c11d55bb8147047af5bbf5f07cf766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1330268439}
-  personajeBueno: {fileID: 7887587905974172099}
-  maxDistance: 20
-  objetivo: {fileID: 8105973905252116907}
-  velocidad: 5
-  proyectilPrefab: {fileID: 1934088803}
-  velocidadSeguimiento: 1
-  fuerzaDisparo: 200

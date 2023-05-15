@@ -6,14 +6,14 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player;
     public GameObject player2;
-    public Vector3 offset;
-    public float sensitivity;
+   /* public Vector3 offset;
+    public float sensitivity;*/
 
     private GameObject currentTarget;
     private Quaternion currentRotation;
     public bool isFollowingPlayer1 = true;
 
-    void Start()
+    /*void Start()
     {
         currentTarget = player;
         // Ajusta la posición inicial de la cámara
@@ -25,8 +25,10 @@ public class CameraController : MonoBehaviour
     {
         // Gira la cámara con el mouse
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
         transform.RotateAround(player.transform.position, Vector3.up, mouseX);
-    }
+        transform.RotateAround(player.transform.position, Vector3.right, mouseY);
+    }*/
 
     void Update()
     {
@@ -40,7 +42,7 @@ public class CameraController : MonoBehaviour
             currentRotation = transform.rotation;
         }
 
-        transform.position = currentTarget.transform.position + offset;
+        //transform.position = currentTarget.transform.position + offset;
         // Actualiza la rotación de la cámara para que mire al jugador actual
         transform.rotation = currentRotation;
         transform.LookAt(currentTarget.transform.position);
