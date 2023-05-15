@@ -25,6 +25,8 @@ public class CameraController : MonoBehaviour
 
         // Gira la cámara con el mouse
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
         transform.RotateAround(player.transform.position, Vector3.up, mouseX);
+        transform.RotateAround(player.transform.position, Vector3.right, mouseY);
     }
 }

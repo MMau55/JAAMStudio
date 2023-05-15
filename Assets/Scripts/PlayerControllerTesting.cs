@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerTesting : MonoBehaviour
 {
     public float speed = 5f;
     public float mouseSensitivity = 100f;
-
     private CharacterController controller;
     private float verticalRotation = 0f;
 
@@ -18,6 +17,16 @@ void Start()
 
     void Update()
     {
+        bool upMovementKey = Input.GetKey(KeyCode.Q);
+        bool downMovementKey = Input.GetKey(KeyCode.E);
+
+        MoveAround();
+        MoveUpAndDown(upMovementKey, downMovementKey);
+    }
+
+    void MoveAround()
+    {
+        
         float horizontal = Input.GetAxis("Horizontal") * speed;
         float vertical = Input.GetAxis("Vertical") * speed;
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -31,6 +40,20 @@ void Start()
 
         Vector3 move = transform.forward * vertical + transform.right * horizontal;
         controller.Move(move * Time.deltaTime);
+
+    }
+
+    void MoveUpAndDown(bool up, bool down)
+    {
+        if (up && transform.position.y <= 2)
+        {
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
+        }
+        if(down && transform.position.y >= 1.3)
+        {
+            transform.Translate(Vector3.up * -speed * Time.deltaTime);
+        }
+        
     }
 
 }

@@ -2,37 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerTesting : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f;
-    public float mouseSensitivity = 100f;
-
-    private CharacterController controller;
-    private float verticalRotation = 0f;
-
-void Start()
+    public GameObject proyectilePrefab;
+    private float speed = 10f;
+    private float Rspeed = 50f;
+    public float turnSpeed = 10f;
+    public float velocidadGiro = 100f;
+    public float horizontalInput;
+    public float verticalInput;
+    // Start is called before the first frame update
+    void Start()
     {
-        controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
-    void Update()
+    // Update is called once per frame
+    void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal") * speed;
-        float vertical = Input.GetAxis("Vertical") * speed;
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
-        verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        }
 
-        transform.Rotate(Vector3.up * mouseX);
-        Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+        if (Input.GetKey(KeyCode.A))
+        {
 
-        Vector3 move = transform.forward * vertical + transform.right * horizontal;
-        controller.Move(move * Time.deltaTime);
+            transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+
+            transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+        }
+
+
     }
-
 }
-
-
