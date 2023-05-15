@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject proyectilePrefab;
-    private float speed = 10f;
-    private float Rspeed = 50f;
-    public float turnSpeed = 10f;
-    public float velocidadGiro = 100f;
-    public float horizontalInput;
-    public float verticalInput;
-    // Start is called before the first frame update
+    public float speed = 5f;
+    //public float mouseSensitivity = 100f;
+
+    private CharacterController controller;
+    //private float verticalRotation = 0f;
+
+    public bool isControlled = false;
+
     void Start()
     {
-
+        isControlled = true;
+        controller = GetComponent<CharacterController>();
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+
+        /*float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -43,6 +46,19 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
         }
 
+        transform.Rotate(Vector3.up * mouseX);
+        Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);*/
+
+        if(isControlled)
+        {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
+            //transform.position += movement * speed * Time.deltaTime;
+            controller.Move(movement * speed * Time.deltaTime);
+        }
 
     }
 }
