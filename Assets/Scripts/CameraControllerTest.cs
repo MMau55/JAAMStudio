@@ -12,7 +12,6 @@ public class CameraControllerTest : MonoBehaviour
     private Vector3 defaultOffset;
     private float defaultFieldOfView;
 
-
     void Start()
     {
         // Ajusta la posición inicial de la cámara
@@ -26,6 +25,7 @@ public class CameraControllerTest : MonoBehaviour
 
     private void LateUpdate()
     {
+
         // Obtiene la rotación del objeto del jugador
         Quaternion rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
 

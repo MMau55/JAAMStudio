@@ -6,6 +6,7 @@ public class TutorialManager : MonoBehaviour
 {
     public int pageIndex;
     public bool isFirstGameplay;
+    public GameObject camera;
     [SerializeField] GameObject[] tutorialPages;
     [SerializeField] GameObject menuTutorial;
     void Awake()
@@ -24,11 +25,14 @@ public class TutorialManager : MonoBehaviour
         {
             Time.timeScale = 0;
             menuTutorial.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
-            menuTutorial.SetActive(false);
             Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            menuTutorial.SetActive(false);
+            camera.SetActive(false);            
         }
     }
 
