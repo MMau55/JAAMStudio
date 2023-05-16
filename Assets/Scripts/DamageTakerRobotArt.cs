@@ -8,6 +8,7 @@ public class DamageTakerRobotArt : MonoBehaviour
 {
     public Image healthBar;
     public float health, maxHealth = 3;
+    public AudioClip audioColision;
     private void Start()
     {
         health = 3;
@@ -19,6 +20,7 @@ public class DamageTakerRobotArt : MonoBehaviour
         if (collision.gameObject.name == "RobotBad")
         {
             //healthBarFiller();
+            AudioSource.PlayClipAtPoint(audioColision, transform.position);
             takeDamage();
 
         }
