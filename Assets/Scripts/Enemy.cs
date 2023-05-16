@@ -118,16 +118,17 @@ public class Enemy : MonoBehaviour
     private bool hayObstaculo;
     private bool seguirJugador;
 
-    private List<Transform> listaWaypoints = new List<Transform>();
+    //private List<Transform> listaWaypoints = new List<Transform>();
+    public List<Transform> listaWaypoints = new List<Transform>();
     private int indiceWaypointActual = 0;
 
     void Start()
     {
-        GameObject[] waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        /*GameObject[] waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
         foreach (GameObject waypoint in waypoints)
         {
             listaWaypoints.Add(waypoint.transform);
-        }
+        }*/
 
         // Inicialmente, el enemigo no está siguiendo al jugador
         seguirJugador = false;
@@ -159,6 +160,7 @@ public class Enemy : MonoBehaviour
             if (Physics.Raycast(transform.position, direccion, out RaycastHit hit, rango, layerjugador))
             {
                 jugadorDetrasDeObstaculo = hit.collider.gameObject.CompareTag("Player");
+                jugadorDetrasDeObstaculo = hit.collider.gameObject.CompareTag("Player2");
             }
         }
         else

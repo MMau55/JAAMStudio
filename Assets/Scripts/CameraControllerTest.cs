@@ -5,17 +5,12 @@ using UnityEngine;
 public class CameraControllerTest : MonoBehaviour
 {
     public GameObject player;
-    public GameObject player2;
     public Vector3 offset;
     public float sensitivity;
 
     private Camera cam;
     private Vector3 defaultOffset;
     private float defaultFieldOfView;
-
-    private GameObject currentTarget;
-    private Quaternion currentRotation;
-    public bool isFollowingPlayer1 = true;
 
     void Start()
     {
@@ -31,22 +26,13 @@ public class CameraControllerTest : MonoBehaviour
     private void LateUpdate()
     {
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            isFollowingPlayer1 = !isFollowingPlayer1;
-            player.GetComponent<PlayerController>().isControlled = isFollowingPlayer1;
-            player2.GetComponent<PlayerController>().isControlled = !isFollowingPlayer1;
-            currentTarget = isFollowingPlayer1 ? player : player2;
-            currentRotation = transform.rotation;
+        // Obtiene la rotación del objeto del jugador
+        Quaternion rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
 
-            // Obtiene la rotación del objeto del jugador
-            Quaternion rotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
-
-            // Ajusta la posición y rotación de la cámara
-            transform.position = player.transform.position + rotation * offset;
-            //transform.LookAt(player.transform.position);
-            transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
-        }
+        // Ajusta la posición y rotación de la cámara
+        transform.position = player.transform.position + rotation * offset;
+        //transform.LookAt(player.transform.position);
+        transform.LookAt(player.transform.position + new Vector3(0,1,0));
 
         // Gira la cámara con el mouse
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
