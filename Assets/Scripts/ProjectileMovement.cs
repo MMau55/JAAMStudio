@@ -15,12 +15,18 @@ public class ProjectileMovement : MonoBehaviour
 
     }
 
-    private void DestroyBullet() {
+    private void DestroyBullet()
+    {
         Destroy(gameObject, 3);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Pared"))
+        {
+            DestroyBullet();
+        }
         DestroyBullet();
+        
     }
 }

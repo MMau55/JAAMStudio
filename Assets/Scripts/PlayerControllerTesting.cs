@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControllerTesting : MonoBehaviour
 {
@@ -9,19 +10,30 @@ public class PlayerControllerTesting : MonoBehaviour
     private CharacterController controller;
     private float verticalRotation = 0f;
 
-void Start()
+    public bool canMove = true;
+
+    public int maxHealth = 3;
+    public string enemyTag = "Enemy";
+
+    private int currentHealth;
+    private bool invincible = false;
+
+    void Start()
     {
         controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
+
+        currentHealth = maxHealth;
+
     }
 
     void Update()
     {
-        bool upMovementKey = Input.GetKey(KeyCode.Q);
-        bool downMovementKey = Input.GetKey(KeyCode.E);
+            bool upMovementKey = Input.GetKey(KeyCode.Q);
+            bool downMovementKey = Input.GetKey(KeyCode.E);
 
-        MoveAround();
-        MoveUpAndDown(upMovementKey, downMovementKey);
+            MoveAround();
+            MoveUpAndDown(upMovementKey, downMovementKey);
     }
 
     void MoveAround()
@@ -39,8 +51,10 @@ void Start()
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
 
         Vector3 move = transform.forward * vertical + transform.right * horizontal;
-        controller.Move(move * Time.deltaTime);
-
+        if (controller.enabled) // verificar si el controlador está habilitado
+        {
+            controller.Move(move * Time.deltaTime);
+        }
     }
 
     void MoveUpAndDown(bool up, bool down)
@@ -54,6 +68,38 @@ void Start()
             transform.Translate(Vector3.up * -speed * Time.deltaTime);
         }
         
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (!invincible && collision.collider.CompareTag(enemyTag))
+        {
+            if (gameObject.CompareTag("Player1"))
+            {
+                currentHealth--;
+                Debug.Log("Player1 was hit! Health: " + currentHealth);
+                if (currentHealth <= 0)
+                {
+                    Debug.Log("Player1 has been defeated!");
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
+            }
+            else if (gameObject.CompareTag("Player2"))
+            {
+                currentHealth = 0;
+                Debug.Log("Player2 was hit! Health: " + currentHealth);
+                Debug.Log("Player2 has been defeated!");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            StartCoroutine(InvincibilityFrames());
+        }
+    }
+
+    IEnumerator InvincibilityFrames()
+    {
+        invincible = true;
+        yield return new WaitForSeconds(1f);
+        invincible = false;
     }
 
 }
