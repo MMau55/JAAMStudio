@@ -10,7 +10,7 @@ public class CharacterSwitcher : MonoBehaviour
 
     void Start()
     {
-        if (characters.Count == 0 || cameras.Count == 0)
+       if (characters.Count == 0 || cameras.Count == 0)
         {
             Debug.LogError("No hay personajes o cámaras asignados");
         }
@@ -25,22 +25,8 @@ public class CharacterSwitcher : MonoBehaviour
         // Verificar si se presiona la tecla para cambiar de personaje
         if (Input.GetKeyDown(KeyCode.F))
         {
-            /*// Desactivar el personaje y cámara actual
-            characters[currentIndex].SetActive(false);
-            cameras[currentIndex].SetActive(false);
-
-            // Incrementar el índice del personaje actual, o volver a cero si llegamos al final
-            currentIndex++;
-            if (currentIndex >= characters.Count)
-            {
-                currentIndex = 0;
-            }
-
-            // Activar el nuevo personaje y su respectiva cámara
-            characters[currentIndex].SetActive(true);
-            cameras[currentIndex].SetActive(true);*/
-
             // Desactivar el controlador de personaje y cámara actual
+
             var currentCharacter = characters[currentIndex];
             var currentCamera = cameras[currentIndex];
 

@@ -18,27 +18,36 @@ public class PlayerControllerTesting : MonoBehaviour
     private int currentHealth;
     private bool invincible = false;
 
+    public string playerTag = ""; // Etiqueta del jugador
+    private Animator animator;
+    private bool isWalking = false;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
         //Cursor.lockState = CursorLockMode.Locked;
 
         currentHealth = maxHealth;
-
+        
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        if (gameObject.CompareTag(playerTag = "Player"))
+        {
             bool upMovementKey = Input.GetKey(KeyCode.Q);
             bool downMovementKey = Input.GetKey(KeyCode.E);
 
-            MoveAround();
             MoveUpAndDown(upMovementKey, downMovementKey);
+        }
+
+        MoveAround();
     }
 
     void MoveAround()
     {
-        
+
         float horizontal = Input.GetAxis("Horizontal") * speed;
         float vertical = Input.GetAxis("Vertical") * speed;
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -50,7 +59,14 @@ public class PlayerControllerTesting : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
 
+        // Verificar si el jugador está caminando
+        isWalking = Mathf.Abs(horizontal) > 0f || Mathf.Abs(vertical) > 0f;
+
+        // Configurar el parámetro "IsWalking" en el Animator
+        animator.SetBool("IsWalking", isWalking);
+
         Vector3 move = transform.forward * vertical + transform.right * horizontal;
+        
         if (controller.enabled) // verificar si el controlador está habilitado
         {
             controller.Move(move * Time.deltaTime);

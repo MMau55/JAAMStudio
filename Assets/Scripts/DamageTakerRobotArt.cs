@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class DamageTakerRobotArt : MonoBehaviour
 {
     public Image healthBar;
-    public float health, maxHealth = 3;
+    public float health = 1, maxHealth = 1;
     public AudioClip audioColision;
     private void Start()
     {
-        health = 3;
+        //health = health;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -22,13 +22,15 @@ public class DamageTakerRobotArt : MonoBehaviour
             //healthBarFiller();
             AudioSource.PlayClipAtPoint(audioColision, transform.position);
             takeDamage();
+            healthBarFiller();
 
         }
     }
 
     private void healthBarFiller()
     {
-        // healthBar.fillAmount = healthBar.fillAmount - 0.33331f;
+        float damage = (1 / maxHealth);
+        healthBar.fillAmount = healthBar.fillAmount - damage;
     }
 
     private void takeDamage()
@@ -39,6 +41,7 @@ public class DamageTakerRobotArt : MonoBehaviour
         }
         else
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("DEFEAT");
         }
     }
